@@ -1,0 +1,11 @@
+.MainFlex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+    height: 100vh;
+}
+
+.BtnImg {
+    cursor: pointer;
+}
