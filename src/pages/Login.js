@@ -13,8 +13,8 @@ function Login() {
         const code = searchParams.get('code');
         
         if(!isEmpty(code)) {
-            customAxios.post(process.env.REACT_APP_API_URL + 'kakao/login')
-            .then()
+            customAxios.post(process.env.REACT_APP_API_URL + 'kakao/login', { 'code' : code }, { withCredentials: true })
+            .then(data => console.log(data))
             .catch()
         }
     },[])
