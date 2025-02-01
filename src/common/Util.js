@@ -13,3 +13,17 @@ export const isEmpty = (data) => {
     }
     return false;
 }
+
+export const getCookie = () => {
+    let mp = new Map();
+    /* name1=value1;name2=value2 형식 */
+    const cookie = document.cookie;
+    const arr = cookie.split(";");
+
+    arr.forEach((elem) => {
+        const temp = elem.split("=");
+        mp.set(temp[0], temp[1]);
+    });
+    
+    return mp;
+}

@@ -1,4 +1,4 @@
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { customAxios } from '../common/CustomAxios';
 import { isEmpty } from '../common/Util';
 import '../css/Login.css';
@@ -8,14 +8,20 @@ import { useEffect } from 'react';
 
 function Login() {
     const [searchParams] = useSearchParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const code = searchParams.get('code');
         
         if(!isEmpty(code)) {
-            customAxios.post(process.env.REACT_APP_API_URL + 'kakao/login', { 'code' : code }, { withCredentials: true })
-            .then(data => console.log(data))
-            .catch()
+            customAxios.post(process.env.REACT_APP_LOGIN_URL + 'kakao', { 'code' : code }, { withCredentials: true })
+            .then(
+                (data) => {
+                    console.log(data);
+                    navigate("/");
+                }
+            )
+            .catch((err) => console.log(err))
         }
     },[])
 
@@ -26,8 +32,15 @@ function Login() {
         .catch((err) => console.log(err))
     }
 
+    function test() {
+        customAxios.get('http://localhost:8080/login/test', { withCredentials: true })
+        .then((data) => console.log(data))
+        .catch((err) => console.log(err))
+    }
+
     return (
         <div className='MainFlex'>
+             <button onClick={test}>test</button> 
             <div>
                 <img style={{height: '100px'}} src={TestImg}/>
             </div>

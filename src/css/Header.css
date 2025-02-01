@@ -1,0 +1,44 @@
+/* 상단 바 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .tabs a {
+    margin-right: 15px;
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .tabs .active {
+    color: #000;
+    font-weight: bold;
+    border-bottom: 2px solid #fdd835;
+  }
+  
+  .icons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .circle-btn {
+    background-color: #fdd835;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .search-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
