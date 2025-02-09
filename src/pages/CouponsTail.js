@@ -1,7 +1,7 @@
 import React from "react";
-import "../css/Coupons.css";
+//import "../css/Coupons.css";
 
-const CouponsTail = (props) => {
+const CouponsTail = () => {
     return (
         <div className="floating-buttons">
         <button className="register-button">쿠폰등록</button>

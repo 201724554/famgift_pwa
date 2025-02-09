@@ -1,6 +1,8 @@
 import React from "react";
+//import "../css/Header.css";
 import "../css/Coupons.css";
-import CouponsHeader from './CouponsHeader.js';
+//import Header from './Header.js';
+import CouponsCategory from './CouponsCategory.js';
 import CouponsSearch from './CouponsSearch.js';
 import CouponsContainer from './CouponsContainer.js';
 import CouponsTail from './CouponsTail.js';
@@ -8,7 +10,7 @@ import CouponsTail from './CouponsTail.js';
 const CouponList = () => {
   return (
     <div className="coupon-list-container">
-      <CouponsHeader/>
+      <CouponsCategory/>
       <CouponsSearch/>
       <CouponsContainer/>
       <CouponsTail/>

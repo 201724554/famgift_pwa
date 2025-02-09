@@ -20,9 +20,6 @@ function App() {
       //navigate("/login");
     }
   },[]);
-  useEffect(()=>{
-    console.log("app.js")
-  })
 
   return (
       <Routes>
