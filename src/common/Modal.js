@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import '../css/Modal.css';
 
 const Modal = (props) => {
-    const { isModalOpen, setIsModalOpen, modalText, buttonText, onButtonClick } = props;
-    const [category, setCategory] = useState("");
+    const { isModalOpen, setIsModalOpen, modalText, buttonText, onButtonClick, modalData, setModalData } = props;
 
-    const handleInputChange = (e) => {
-        setCategory(e.target.value);
-    };
+    useEffect(()=>{
+        setModalData("");
+    },[isModalOpen])
 
     return (
         <div className="main">
@@ -18,12 +17,11 @@ const Modal = (props) => {
                         <span className="modal-subtitle">{modalText}</span>
                         <input
                             type="text"
-                            placeholder="카페"
-                            value={category}
-                            onChange={handleInputChange}
+                            value={modalData}
+                            onChange={(e)=>setModalData(e.target.value)}
                             className="modal-input"
                         />
-                        <button onClick={()=>onButtonClick(category)} className="modal-button">
+                        <button onClick={()=>onButtonClick(modalData)} className="modal-button">
                             {buttonText}
                         </button>
                         <button onClick={()=>setIsModalOpen(false)} className="modal-button-close">

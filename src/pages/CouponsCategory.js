@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from "../common/Modal.js";
 import { customAxios } from '../common/CustomAxios';
 
 const CouponsCategory = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [category, setCategory] = useState("");
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -22,9 +23,20 @@ const CouponsCategory = () => {
                     })
     }
 
+    const [categories, setCategories] = useState([]);
+
+    useEffect(()=>{
+        customAxios.get(process.env.REACT_APP_API_URL + "category")
+                    .then(
+                        (data) => {
+                            console.log(data);
+                        }
+                    )
+    },[])
+
     return (
         <>
-            <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} modalText={"추가할 카테고리를 입력하세요"} buttonText={"카테고리 추가"} onButtonClick={addCategory}/>
+            <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} modalText={"추가할 카테고리를 입력하세요"} buttonText={"카테고리 추가"} onButtonClick={addCategory} modalData={category} setModalData={setCategory}/>
             <div className="categoty-container" style={{ paddingTop: '0px' }}>
                 <div className="categoty-header">
                     <button className="more-button" onClick={openModal}>+</button>
