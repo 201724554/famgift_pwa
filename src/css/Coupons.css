@@ -27,6 +27,23 @@
   cursor: pointer;
 }
 
+.category-button {
+  height: auto;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  /*min-width: 40px;*/
+  width: auto;
+  border-radius: 50px;
+  padding: 10px;
+  font-size: 14px;
+  margin-left: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+  white-space: nowrap; /* Prevents text from wrapping */
+  display: inline-block; /* Ensures inline alignment */
+  text-align: center; /* Centers text horizontally */
+}
+
 .back-button {
   height: auto;
   background-color: #ffffff;

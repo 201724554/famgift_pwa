@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Modal from "../common/Modal.js";
+import CategoryBox from './CategoryBox.js';
 import { customAxios } from '../common/CustomAxios';
 
 const CouponsCategory = () => {
@@ -28,8 +29,8 @@ const CouponsCategory = () => {
     useEffect(()=>{
         customAxios.get(process.env.REACT_APP_API_URL + "category")
                     .then(
-                        (data) => {
-                            console.log(data);
+                        (response) => {
+                            setCategories(response.data);
                         }
                     )
     },[])
@@ -40,7 +41,13 @@ const CouponsCategory = () => {
             <div className="categoty-container" style={{ paddingTop: '0px' }}>
                 <div className="categoty-header">
                     <button className="more-button" onClick={openModal}>+</button>
-                    
+                    {
+                        categories.map(
+                            (elem, index)=>(
+                                <CategoryBox key={elem.id} category={elem}/>
+                            )
+                        )
+                    }
                     <button className="more-button">•••</button>
                 </div>
             </div>
