@@ -1,10 +1,11 @@
 import '../css/Main.css';
 import Header from './Header.js'
 import "../css/Header.css";
+import "../css/Coupons.css";
 import { Link } from 'react-router-dom';
 import kakaoLogin from '../static/kakao_login_medium_narrow.png';
 import { useEffect } from 'react';
-import CouponList from './Coupons.js';
+import CouponList from './coupon/Coupons.js';
 
 function Main() {
 

@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import Modal from "../common/Modal.js";
+import Modal from "../../common/Modal.js";
 import CategoryBox from './CategoryBox.js';
-import { customAxios } from '../common/CustomAxios';
+import { customAxios } from '../../common/CustomAxios.js';
 
 const CouponsCategory = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [category, setCategory] = useState("");
+
+    const init = () => {
+        customAxios.get(process.env.REACT_APP_API_URL + "category")
+                    .then(
+                        (response) => {
+                            setCategories(response.data);
+                        }
+                    )
+                    .catch((err) => console.log(err))
+                }
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -14,26 +24,18 @@ const CouponsCategory = () => {
     const addCategory = (category) => {
         customAxios.post(process.env.REACT_APP_API_URL + "category", {name : category})
                     .then(
-                        (data) => {
-                            console.log(data);
+                        () => {
+                            setIsModalOpen(false);
+                            init();
                         }
                     )
                     .catch((err) => console.log(err))
-                    .finally(() => {
-                        setIsModalOpen(false);
-                    })
+                    .finally(() => {})
     }
 
     const [categories, setCategories] = useState([]);
 
-    useEffect(()=>{
-        customAxios.get(process.env.REACT_APP_API_URL + "category")
-                    .then(
-                        (response) => {
-                            setCategories(response.data);
-                        }
-                    )
-    },[])
+    useEffect(init, []);
 
     return (
         <>

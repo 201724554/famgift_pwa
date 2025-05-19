@@ -1,8 +1,5 @@
 import React from "react";
-//import "../css/Header.css";
-import "../css/Coupons.css";
-//import Header from './Header.js';
-import CouponsCategory from './CouponsCategory.js';
+import CouponsCategory from '../category/CouponsCategory.js';
 import CouponsSearch from './CouponsSearch.js';
 import CouponsContainer from './CouponsContainer.js';
 import CouponsTail from './CouponsTail.js';
