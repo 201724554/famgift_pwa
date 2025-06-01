@@ -1,8 +1,11 @@
+/* Coupons */
 .coupon-list-container {
   font-family: Arial, sans-serif;
   padding: 10px;
 }
+/* Coupons */
 
+/* CategoryContainer */
 .categoty-container {
   overflow-x: auto;
   /* 좌우 스크롤 가능하도록 설정 */
@@ -26,23 +29,7 @@
   margin-right: 5px;
   cursor: pointer;
 }
-
-.category-button {
-  height: auto;
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  /*min-width: 40px;*/
-  width: auto;
-  border-radius: 50px;
-  padding: 10px;
-  font-size: 14px;
-  margin-left: 5px;
-  margin-right: 5px;
-  cursor: pointer;
-  white-space: nowrap; /* Prevents text from wrapping */
-  display: inline-block; /* Ensures inline alignment */
-  text-align: center; /* Centers text horizontally */
-}
+/* CategoryContainer */
 
 .back-button {
   height: auto;
@@ -57,6 +44,7 @@
   cursor: pointer;
 }
 
+/* CouponSearch */
 .filter-section {
   display: flex;
   justify-content: space-between;
@@ -71,7 +59,9 @@
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+/* CouponSearch */
 
+/* CouponContainer */
 .coupon-container {
   overflow-y: auto;
   height: 95vw;
@@ -79,8 +69,9 @@
   border-radius: 4px;
   /* 좌우 스크롤 가능하도록 설정 */
 }
+/* CouponContainer */
 
-
+/* CouponBox */
 .coupon-card {
   display: flex;
   justify-content: space-between;
@@ -131,7 +122,9 @@
   cursor: pointer;
   color: red;
 }
+/* CouponBox */
 
+/* CouponsTail */
 .floating-buttons {
   position: fixed;
   bottom: 20px;
@@ -149,12 +142,107 @@
   margin-bottom: 10px;
   cursor: pointer;
   font-size: 14px;
+  width: 120px;
+}
+/* CouponsTail */
+
+/* CategoryBox */
+.category-button {
+  height: auto;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  /*min-width: 40px;*/
+  width: auto;
+  border-radius: 50px;
+  padding: 10px;
+  font-size: 14px;
+  margin-left: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+  white-space: nowrap; /* Prevents text from wrapping */
+  display: inline-block; /* Ensures inline alignment */
+  text-align: center; /* Centers text horizontally */
+}
+/* CategoryBox */
+
+/* CouponRegister */
+.coupon-register {
+  font-family: "Noto Sans KR", sans-serif;
+  padding: 20px;
+  max-width: 90%;
+  margin: auto;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+}
+
+.header {
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.coupon-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.form-group input {
+  width: 95%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.category-group {
+  display: flex;
+  align-items: center;
+}
+
+.category-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-arrow {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.share-button {
+  background-color: #8B4513;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
 }
 
 .register-button {
-  width: 120px;
+  background-color: #FFD700;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
 }
-
-.shared-room {
-  width: 120px;
-}
+/* CouponRegister */

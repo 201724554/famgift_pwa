@@ -6,6 +6,8 @@ import Login from './pages/Login';
 import { useEffect } from 'react';
 import { isEmpty, getCookie } from './common/Util';
 import Header from './pages/Header';
+import CouponRegister from './pages/coupon/CouponRegister';
+
 
 function App() {
   const navigate = useNavigate();
@@ -27,6 +29,7 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/sub" element={<Sub/>}/>
         <Route path="/header" element={<Header/>}/>
+        <Route path="/register" element={<CouponRegister/>}/>
       </Routes>
   );
 }

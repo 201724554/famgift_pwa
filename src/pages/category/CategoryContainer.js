@@ -3,9 +3,10 @@ import Modal from "../../common/Modal.js";
 import CategoryBox from './CategoryBox.js';
 import { customAxios } from '../../common/CustomAxios.js';
 
-const CouponsCategory = () => {
+const CategoryContainer = (props) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [category, setCategory] = useState("");
+    const [selectedCategories, addSelectedCategories] = useState([]);
 
     const init = () => {
         customAxios.get(process.env.REACT_APP_API_URL + "category")
@@ -57,4 +58,4 @@ const CouponsCategory = () => {
     );
 };
 
-export default CouponsCategory;
+export default CategoryContainer;
