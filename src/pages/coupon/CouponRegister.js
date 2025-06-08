@@ -1,12 +1,14 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CategoryContainer2 from "../category/CategoryContainer2";
 import Camera from "../../static/camera.png";
 import { customAxios } from "../../common/CustomAxios";
+import { useNavigate } from 'react-router-dom';
+
 
 const CouponRegister = () => {
   const [couponInfo, setCouponInfo] = useState({
     barcode: "",
-    name: "",
+    productName: "",
     brand: "",
     expirationDate: "",
     categories: []
@@ -16,6 +18,7 @@ const CouponRegister = () => {
   const [fileToSend, setFileToSend] = useState();
   const [fileInfo, setFileInfo] = useState();
   const fileInputRef = useRef();
+  const navigate = useNavigate();
 
   const onFileInputClick = () => {
     fileInputRef.current.click();
@@ -47,20 +50,25 @@ const CouponRegister = () => {
     }));
   };
 
+  useEffect(() => {
+    //선택한 카테고리가 바뀔 때 마다 업데이트 수행
+    setCouponInfo({ ...couponInfo, ["categories"]: selectedCategories });
+  }, [selectedCategories])
+
   const onSubmitBtnClick = () => {
+    //setState의 비동기 동작으로 인해 이전 상태 전송
+    //setCouponInfo({ ...couponInfo, ["categories"]: selectedCategories });
+    const formData = new FormData();
     if (image) {
-      setCouponInfo({ ...couponInfo, ["categories"]: selectedCategories });
-      const formData = new FormData();
       formData.append("image", fileToSend);
-      //formData.append("couponInfo", couponInfo);
-      //참고: https://quddnd.tistory.com/225
-      formData.append("couponInfo", new Blob([JSON.stringify(couponInfo)], { type: "application/json" }));
-      //formData 전송 시 자동으로 "Content-Type": "multipart/form-data"으로 전송
-      customAxios.post(process.env.REACT_APP_API_URL + "gifticon", formData).then().catch();
     }
-    else {
-      console.log("df");
-    }
+    //formData.append("couponInfo", couponInfo);
+    //참고: https://quddnd.tistory.com/225
+    formData.append("couponInfo", new Blob([JSON.stringify(couponInfo)], { type: "application/json" }));
+    //formData 전송 시 자동으로 "Content-Type": "multipart/form-data"으로 전송
+    customAxios.post(process.env.REACT_APP_API_URL + "gifticon", formData)
+      .then(() => navigate("/"))
+      .catch();
   };
 
   return (
@@ -88,7 +96,7 @@ const CouponRegister = () => {
       <div className="coupon-form">
         {[
           { id: "barcode", label: "바코드" },
-          { id: "name", label: "상품명" },
+          { id: "productName", label: "상품명" },
           { id: "brand", label: "사용처" },
           { id: "expirationDate", label: "유효기간" },
         ].map(({ id, label }) => (

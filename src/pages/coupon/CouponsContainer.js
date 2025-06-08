@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CouponBox from './CouponBox.js';
+import { customAxios } from "../../common/CustomAxios.js";
 
 const samples = [
     { id: 1, title: "test2", description: "q", date: "2024-09-30", daysLeft: 22, imageUrl: "path-to-your-image" },
@@ -19,13 +20,19 @@ const CouponsContainer = () => {
 
     useEffect(() => {
         //axios -> setCoupons
-        setCoupons(samples);
+        customAxios.get(process.env.REACT_APP_API_URL + "gifticon")
+            .then((response) => {
+                //console.log(response.data)
+                setCoupons(response.data)
+            })
+            .catch()
+        //setCoupons(samples);
     }, [])
 
     return (
         <div className="coupon-container">
             {coupons.map((item) => (
-                <CouponBox key={item.id} coupon={item}/>
+                <CouponBox key={item.id} coupon={item} />
             ))}
         </div>
     );
