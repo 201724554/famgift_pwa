@@ -46,7 +46,10 @@ const CategoryBox = (props) => {
     return (
         <button
             style={{ backgroundColor: btnColor }}
-            className="category-button" onClick={onTouch} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>{props.category.name}</button>
+            className="category-button"
+            onClick={onTouch}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}>{props.category.name}</button>
     );
 };
 

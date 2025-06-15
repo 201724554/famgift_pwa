@@ -31,19 +31,6 @@
 }
 /* CategoryContainer */
 
-.back-button {
-  height: auto;
-  background-color: #ffffff;
-  min-width: 80px;
-  border: 1px solid #ddd;
-  border-radius: 50px;
-  padding: 10px;
-  font-size: 14px;
-  margin-left: 5px;
-  margin-right: 5px;
-  cursor: pointer;
-}
-
 /* CouponSearch */
 .filter-section {
   display: flex;
@@ -230,14 +217,6 @@
   margin-top: 20px;
 }
 
-.share-button {
-  background-color: #8B4513;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-}
-
 .register-button {
   background-color: #FFD700;
   color: black;
@@ -246,3 +225,54 @@
   cursor: pointer;
 }
 /* CouponRegister */
+
+/* CouponViewer */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+}
+
+.top-section, .bottom-section {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.middle-section {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview-image {
+  width: 80%;
+  height: auto;
+}
+
+.back-button, .fullscreen-button,
+.download-button, .trash-button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.share-button {
+  background-color: #8B4513;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.complete-button {
+  background-color: #FFD700;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+/* CouponViewer */

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import imageAlt from '../../static/image-alt.png';
+import { customAxios } from "../../common/CustomAxios";
 
 /*
 id
@@ -10,6 +11,7 @@ barcode
 price
 expirationDate
  */
+//setSelectedCoupon
 const CouponBox = (props) => {
     const [coupon, setCoupon] = useState({
         // id: '',
@@ -61,8 +63,19 @@ const CouponBox = (props) => {
         return dayDiff;
     }
 
+    const deleteCoupon = () => {
+        customAxios.patch("gifticon", { id: coupon.id })
+            .then()
+            .catch()
+    }
+
+    const viewCoupon = () => {
+        props.setSelectedCoupon(coupon);
+        props.setIsViewOpen(true);
+    }
+
     return (
-        <div className="coupon-card">
+        <div className="coupon-card" onClick={()=>viewCoupon()}>
             <img src={process.env.REACT_APP_API_URL + "image/" + coupon.imagePath} alt={imageAlt} className="coupon-image" />
             <div className="coupon-info">
                 <h3>{coupon.name}</h3>
@@ -70,7 +83,7 @@ const CouponBox = (props) => {
                 <p>{coupon.expirationDate}</p>
                 <button className="days-left">D-{coupon.dateDiff}</button>
             </div>
-            <button className="delete-button">🗑</button>
+            <button className="delete-button" onClick={() => deleteCoupon()}>🗑</button>
         </div>
     );
 };
