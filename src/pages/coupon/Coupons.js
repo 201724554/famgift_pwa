@@ -41,7 +41,7 @@ const CouponList = () => {
   const getCoupons = () => {
     customAxios.get("gifticon")
       .then((response) => {
-        setCoupons(response.data)
+        setCoupons(response.data);
       })
       .catch((err) => console.log(err))
   }
@@ -71,6 +71,7 @@ const CouponList = () => {
           selectedCoupon={selectedCoupon}
           setSelectedCoupon={setSelectedCoupon}
           setIsViewOpen={setIsViewOpen}
+          getCoupons={getCoupons}
         />
       }
     </div>

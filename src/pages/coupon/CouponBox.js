@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import imageAlt from '../../static/image-alt.png';
 import { customAxios } from "../../common/CustomAxios";
 
@@ -29,6 +29,24 @@ const CouponBox = (props) => {
         expirationDate: '',
         dateDiff: ''
     });
+    const [overLayStyle, setOverLayStyle] = useState();
+
+    const imageRef = useRef(null);
+
+    useEffect(() => {
+        if (imageRef.current) {
+            const rect = imageRef.current.getBoundingClientRect();
+            const style = {
+                top: rect.top + "px",
+                left: rect.left + "px",
+                width: rect.width + "px",
+                height: rect.height + "px",   
+                borderRadius: "8px",
+                fontSize: "24px"        
+            };
+            setOverLayStyle(style)
+        }
+    }, []); // 렌더 후 한 번 실행
 
     useEffect(() => {
         setCoupon({
@@ -64,19 +82,24 @@ const CouponBox = (props) => {
     }
 
     const deleteCoupon = () => {
-        customAxios.patch("gifticon", { id: coupon.id })
+        customAxios.patch("gifticon/delete", { id: coupon.id })
             .then()
             .catch()
     }
 
     const viewCoupon = () => {
-        props.setSelectedCoupon(coupon);
+        props.setSelectedCoupon(props.coupon);
         props.setIsViewOpen(true);
     }
 
     return (
-        <div className="coupon-card" onClick={()=>viewCoupon()}>
-            <img src={process.env.REACT_APP_API_URL + "image/" + coupon.imagePath} alt={imageAlt} className="coupon-image" />
+        <div className="coupon-card" onClick={() => viewCoupon()}>
+            <img src={process.env.REACT_APP_API_URL + "image/" + coupon.imagePath}
+                alt={imageAlt}
+                className="coupon-image"
+                ref={imageRef}
+            />
+            {props.coupon.gifticonIsUsed === "Y" && (<div className="overlay" style={overLayStyle}>사용</div>)}
             <div className="coupon-info">
                 <h3>{coupon.name}</h3>
                 <p>{coupon.brand}</p>

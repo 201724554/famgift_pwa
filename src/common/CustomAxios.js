@@ -15,6 +15,7 @@ customAxios.interceptors.response.use(
       return response;
     },
     function (error) {
+      alert(error.message);
       return Promise.reject(error);
     }
   );
