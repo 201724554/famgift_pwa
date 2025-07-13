@@ -17,7 +17,7 @@ const CouponList = () => {
 
   useEffect(() => {
     getCategories();
-    getCoupons();
+    getCoupons(selectedCategories);
   }, []);
 
   useEffect(() => {
@@ -26,6 +26,8 @@ const CouponList = () => {
 
   useEffect(() => {
     //카테고리 별 재조회
+    setCoupons([]);
+    getCoupons();
   }, [selectedCategories])
 
   const getCategories = () => {
@@ -39,11 +41,16 @@ const CouponList = () => {
   }
 
   const getCoupons = () => {
-    customAxios.get("gifticon")
+    customAxios.get("gifticon?" + getReqParam())
       .then((response) => {
         setCoupons(response.data);
       })
       .catch((err) => console.log(err))
+  }
+
+  const getReqParam = () => {
+    const reqParam = selectedCategories.map(n => `categories=${n}`).join('&');
+    return reqParam; 
   }
 
 

@@ -22,7 +22,7 @@ const CouponViewer = (props) => {
             };
             setOverLayStyle(style);
         }
-    }, []); 
+    }, []);
 
     const goBack = () => {
         //props.setSelectedCoupon(null);
@@ -65,7 +65,10 @@ const CouponViewer = (props) => {
                     className="preview-image"
                     ref={imageRef}
                 />
-                {props.selectedCoupon.gifticonIsUsed === "Y" && (<div className="overlay" style={overLayStyle}>사용</div>)}
+                {props.selectedCoupon.gifticonIsUsed === "Y" &&
+                    (<div className="overlay" style={overLayStyle}>
+                        {props.selectedCoupon.gifticonUsedDate.substring(0, 10)}<br />사용완료
+                    </div>)}
             </div>
             <div className="bottom-section">
                 <button className="share-button">친구와 공유</button>

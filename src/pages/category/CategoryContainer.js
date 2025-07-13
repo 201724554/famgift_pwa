@@ -23,7 +23,7 @@ const CategoryContainer = (props) => {
                 }
             )
             .catch((err) => console.log(err))
-            .finally(() => {})
+            .finally(() => { })
     }
 
     return (
@@ -45,9 +45,11 @@ const CategoryContainer = (props) => {
                             (elem, index) => (
                                 <CategoryBox
                                     key={elem.id}
-                                    category={elem} 
+                                    category={elem}
                                     selectedCategories={props.selectedCategories}
-                                    setSelectedCategories={props.setSelectedCategories}/>
+                                    setSelectedCategories={props.setSelectedCategories}
+                                    maxCnt={1}
+                                />
                             )
                         )
                     }

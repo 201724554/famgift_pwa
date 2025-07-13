@@ -7,13 +7,13 @@ const CategoryContainer2 = (props) => {
 
     const init = () => {
         customAxios.get("category")
-                    .then(
-                        (response) => {
-                            setCategories(response.data);
-                        }
-                    )
-                    .catch((err) => console.log(err))
+            .then(
+                (response) => {
+                    setCategories(response.data);
                 }
+            )
+            .catch((err) => console.log(err))
+    }
 
     useEffect(init, []);
 
@@ -23,8 +23,15 @@ const CategoryContainer2 = (props) => {
                 <div className="categoty-header">
                     {
                         categories.map(
-                            (elem, index)=>(
-                                <CategoryBox key={elem.id} category={elem} selectedCategories={props.selectedCategories} setSelectedCategories={props.setSelectedCategories} onTouchStartAtv={false} onTouchEndAtv={false}/>
+                            (elem, index) => (
+                                <CategoryBox key={elem.id}
+                                    category={elem}
+                                    selectedCategories={props.selectedCategories}
+                                    setSelectedCategories={props.setSelectedCategories}
+                                    onTouchStartAtv={false}
+                                    onTouchEndAtv={false}
+                                    maxCnt={3}
+                                />
                             )
                         )
                     }

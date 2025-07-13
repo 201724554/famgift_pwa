@@ -112,6 +112,15 @@
   font-size: 12px;
 }
 
+.coupon-used {
+  background-color: #ff0000;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
 .delete-button {
   background: none;
   border: none;
@@ -288,3 +297,10 @@
   cursor: pointer;
 }
 /* CouponViewer */
+
+.verticalAlign {
+  display: flex;
+  flex-direction: column; /* 수직 정렬 */
+  gap: 20px; /* 버튼 사이 간격 */
+  align-items: flex-start; /* 왼쪽 정렬 (필요에 따라 center로 변경 가능) */
+}
