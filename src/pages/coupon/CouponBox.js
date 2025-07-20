@@ -125,8 +125,8 @@ const CouponBox = (props) => {
 
             {/* 삭제/수정 버튼 수직으로 정렬하기 */}
             <div className="verticalAlign">
-                <button className="delete-button" onClick={() => deleteCoupon()}>🗑</button>
-                <button className="edit-button" onClick={() => updateCoupon()}>🗑</button>
+                <button className="delete-button" onClick={() => deleteCoupon()}>🗑️</button>
+                <button className="edit-button" onClick={() => updateCoupon()}>✏️</button>
             </div>
         </div>
     );

@@ -2,10 +2,9 @@ import React, { useEffect } from 'react';
 import '../css/Modal.css';
 
 const Modal = (props) => {
-    const { isModalOpen, setIsModalOpen, modalText, buttonText, onButtonClick, modalData, setModalData } = props;
-
+    const { isModalOpen, setIsModalOpen, modalText, buttonText, onButtonClick, modalData, setModalData, etcData } = props;
     useEffect(()=>{
-        setModalData("");
+        setModalData(modalData);
     },[isModalOpen])
 
     return (
@@ -17,11 +16,11 @@ const Modal = (props) => {
                         <span className="modal-subtitle">{modalText}</span>
                         <input
                             type="text"
-                            value={modalData}
+                            defaultValue={modalData}
                             onChange={(e)=>setModalData(e.target.value)}
                             className="modal-input"
                         />
-                        <button onClick={()=>onButtonClick(modalData)} className="modal-button">
+                        <button onClick={()=>onButtonClick(modalData, etcData)} className="modal-button">
                             {buttonText}
                         </button>
                         <button onClick={()=>setIsModalOpen(false)} className="modal-button-close">

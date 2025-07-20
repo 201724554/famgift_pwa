@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Modal from "../../common/Modal.js";
 import CategoryBox from './CategoryBox.js';
 import { customAxios } from '../../common/CustomAxios.js';
+import { useNavigate } from 'react-router-dom';
+
 
 //[categories, setCategories]
 //[selectedCategories, setSelectedCategories]
@@ -9,12 +11,13 @@ import { customAxios } from '../../common/CustomAxios.js';
 const CategoryContainer = (props) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [newCategory, setNewCategory] = useState("");
+    const navigate = useNavigate();
 
     const openModal = () => {
         setIsModalOpen(true);
     }
 
-    const addCategory = (category) => {
+    const addCategory = (category, etcData) => {
         customAxios.post(process.env.REACT_APP_API_URL + "category", { name: category })
             .then(
                 () => {
@@ -24,6 +27,10 @@ const CategoryContainer = (props) => {
             )
             .catch((err) => console.log(err))
             .finally(() => { })
+    }
+
+    const updateCategory = () => {
+        navigate("/category/update");
     }
 
     return (
@@ -53,7 +60,7 @@ const CategoryContainer = (props) => {
                             )
                         )
                     }
-                    <button className="more-button">•••</button>
+                    <button className="more-button" onClick={()=>{updateCategory()}}>•••</button>
                 </div>
             </div>
         </>
