@@ -65,10 +65,11 @@ const CouponList = () => {
             selectedCategories={selectedCategories}
             setSelectedCategories={setSelectedCategories}
             getCategories={getCategories} />
-          <CouponsSearch />
+          {/* <CouponsSearch /> */}
           <CouponsContainer
             coupons={coupons}
             setCoupons={setCoupons}
+            getCoupons={getCoupons}
             setSelectedCoupon={setSelectedCoupon}
             setIsViewOpen={setIsViewOpen} />
           <CouponsTail />

@@ -1,18 +1,48 @@
-import { NavLink } from 'react-router-dom';
-import React, { useState } from 'react';
+const Header = (props) => {
+    const menus = [
+        {
+            name: "내 쿠폰",
+            value: "CouponList"
+        },
+        {
+            name: "사용가능",
+            value: "UsableCouponList"
+        },
+        {
+            name: "공유중",
+            value: "SharedCouponList"
+        },
+        {
+            name: "사용완료",
+            value: "UsedCouponList"
+        },
+        {
+            name: "공유방 관리",
+            value: "GroupList"
+        },
+    ]
 
-const Header = () => {
+    const onHeaderClick = (event, value) => {
+        props.setSelectedHeader(value);
+    }
+
     return (
         <header className="header">
-            <div className="tabs">
-                <NavLink to="/">전체보기</NavLink>
-                <NavLink to="/1">사용가능</NavLink>
-                <NavLink to="/2">공유중</NavLink>
-                <NavLink to="/3">사용완료</NavLink>
-            </div>
-            <div className="tabs">
-                <NavLink to="5">공유방 만들기</NavLink>
-            </div>
+            {
+                menus.map((elem) => {
+                    const isActive = props.selectedHeader === elem.value;
+                    return (
+                        <div key={elem.name} className="tabs" style={{ backgroundColor: isActive ? "#FFD700" : "#FFFFFF" }}>
+                            <div
+                                key={elem.value}
+                                onClick={(event) => { onHeaderClick(event, elem.value) }}
+                            >
+                                {elem.name}
+                            </div>
+                        </div>
+                    )
+                })
+            }
         </header>
     );
 };

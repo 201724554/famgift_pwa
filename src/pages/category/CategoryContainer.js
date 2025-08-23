@@ -23,6 +23,7 @@ const CategoryContainer = (props) => {
                 () => {
                     setIsModalOpen(false);
                     props.getCategories();
+                    setNewCategory("");
                 }
             )
             .catch((err) => console.log(err))
@@ -44,7 +45,7 @@ const CategoryContainer = (props) => {
                 modalData={newCategory}
                 setModalData={setNewCategory}
             />
-            <div className="categoty-container" style={{ paddingTop: '0px' }}>
+            <div className="categoty-container" style={{ paddingTop: '0px', paddingBottom: '10px' }}>
                 <div className="categoty-header">
                     <button className="more-button" onClick={openModal}>+</button>
                     {

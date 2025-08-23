@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import imageAlt from '../../static/image-alt.png';
 import { customAxios } from "../../common/CustomAxios";
 import { useNavigate } from 'react-router-dom';
-import ModalWithDropdown from "../../common/ModalWithDropdown";
+import { customConfirm, getUserId } from "../../common/Util";
 
 
 /*
@@ -16,7 +16,7 @@ expirationDate
  */
 //setSelectedCoupon
 //getCoupons
-const CouponBox = (props) => {
+const SharedCouponBox = (props) => {
     const navigate = useNavigate();
     const [coupon, setCoupon] = useState({
         // id: '',
@@ -88,20 +88,11 @@ const CouponBox = (props) => {
     }
 
     const deleteCoupon = () => {
-        if (!window.confirm("삭제 처리하시겠어요?")) {
-            return;
-        }
-        customAxios.patch("gifticon/delete", { id: coupon.id })
-            .then(() => {/* getCoupon */ })
-            .catch()
+
     }
 
     const updateCoupon = () => {
-        //CouponRegister 호출 전에 쿠폰 정보 + 카테고리 정보 불러와서 state로 전달
-        customAxios.get(process.env.REACT_APP_API_URL + "gifticon/" + coupon.id)
-            .then((res) => {
-                navigate("/register", { state: { coupon: res.data } });
-            })
+
     }
 
     const viewCoupon = () => {
@@ -109,25 +100,16 @@ const CouponBox = (props) => {
         props.setIsViewOpen(true);
     }
 
-    const openModal = () => {
-        setIsModalOpen(true);
-    }
-
-    const shareCoupon = (groupId, gifticonId) => {
-        customAxios.patch("/gifticon/group", { groupId: groupId, /*gifticonId*/ id: gifticonId })
-            .then(()=>{
-                //다시 불러오기?
-                props.getCoupons();
-            })
-            .catch()
-    }
-
-    const getDropdownData = (thenFunction) => {
-        customAxios.get("/group")
-            .then((res) => {
-                thenFunction(res);
-            })
-            .catch()
+    const stopShareCoupon = (gifticonId) => {
+        getUserId()
+        // if (customConfirm("공유를 중단할까요?")) {
+        //     customAxios.patch("/gifticon/group", { id: coupon.id })
+        //         .then(() => {
+        //             //다시 불러오기?
+        //             props.getCoupons();
+        //         })
+        //         .catch()
+        // }
     }
 
     return (
@@ -137,7 +119,6 @@ const CouponBox = (props) => {
                 className="coupon-image"
                 ref={imageRef}
             />
-            {/* {props.coupon.gifticonIsUsed === "Y" && (<div className="overlay" style={overLayStyle}>사용</div>)} */}
             <div className="coupon-info" onClick={() => viewCoupon()}>
                 <h3>{coupon.name}</h3>
                 <p>{coupon.brand}</p>
@@ -149,21 +130,13 @@ const CouponBox = (props) => {
 
             {/* 삭제/수정 버튼 수직으로 정렬하기 */}
             <div className="verticalAlign">
-                <button className="delete-button" onClick={() => deleteCoupon()}>🗑️</button>
-                <button className="edit-button" onClick={() => updateCoupon()}>✏️</button>
-                <button className="edit-button" onClick={() => openModal()}>👨‍👩‍👧‍👦</button>
+                {/* <button className="delete-button" onClick={() => deleteCoupon()}>🗑️</button>
+                <button className="edit-button" onClick={() => updateCoupon()}>✏️</button> */}
+                {/* 원래 기프티콘 주인만 할 수 있도록 수정 */}
+                <button className="edit-button" onClick={() => { stopShareCoupon() }}>👨‍👩‍👧‍👦</button>
             </div>
-            <ModalWithDropdown
-                isModalOpen={isModalOpen}
-                setIsModalOpen={setIsModalOpen}
-                modalText={"쿠폰을 공유할 공유방을 선택하세요"}
-                buttonText={"공유하기"}
-                onButtonClick={shareCoupon}
-                getDropdownData={getDropdownData}
-                etcData={coupon.id}
-            />
         </div>
     );
 };
 
-export default CouponBox;
+export default SharedCouponBox;

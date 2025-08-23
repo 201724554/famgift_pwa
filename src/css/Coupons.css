@@ -51,7 +51,7 @@
 /* CouponContainer */
 .coupon-container {
   overflow-y: auto;
-  height: 95vw;
+  height: 145vw;
   border: 1px solid #ccc;
   border-radius: 4px;
   /* 좌우 스크롤 가능하도록 설정 */
@@ -309,6 +309,6 @@
 .verticalAlign {
   display: flex;
   flex-direction: column; /* 수직 정렬 */
-  gap: 20px; /* 버튼 사이 간격 */
+  gap: 5px; /* 버튼 사이 간격 */
   align-items: flex-start; /* 왼쪽 정렬 (필요에 따라 center로 변경 가능) */
 }

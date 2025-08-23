@@ -24,6 +24,17 @@ export const getCookie = () => {
         const temp = elem.split("=");
         mp.set(temp[0], temp[1]);
     });
-    
+
     return mp;
+}
+
+export const getUserId = () => {
+    console.log(getCookie());
+}
+
+export const customConfirm = (msg, beforeConfirm) => {
+    if (!isEmpty(beforeConfirm)) {
+        beforeConfirm();
+    }
+    return window.confirm(msg);
 }

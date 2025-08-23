@@ -4,7 +4,7 @@ import { customAxios } from "../../common/CustomAxios.js";
 
 
 //[selectedCoupon, setSelectedCoupon]
-const CouponViewer = (props) => {
+const SharedCouponViewer = (props) => {
     const [overLayStyle, setOverLayStyle] = useState();
 
     const imageRef = useRef(null);
@@ -51,6 +51,10 @@ const CouponViewer = (props) => {
             .catch((err) => console.log(err))
     }
 
+    const stopShare = () => {
+
+    }
+
     return (
         <div className="container">
             <div className="top-section">
@@ -71,7 +75,7 @@ const CouponViewer = (props) => {
                     </div>)}
             </div>
             <div className="bottom-section">
-                {/* <button className="share-button">친구와 공유</button> */}
+                {/* <button className="share-button" onClick={() => stopShare()}>공유 해제</button> */}
                 {
                     props.selectedCoupon.gifticonIsUsed === "N"
                         ?
@@ -86,4 +90,4 @@ const CouponViewer = (props) => {
     );
 };
 
-export default CouponViewer;
+export default SharedCouponViewer;

@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import CouponBox from './CouponBox.js';
 import { customAxios } from "../../common/CustomAxios.js";
+import SharedCouponBox from "./SharedCouponBox.js";
 
 //coupons
 //setCoupons
 //getCoupons
 //setSelectedCoupon
-const CouponsContainer = (props) => {
+const SharedCouponsContainer = (props) => {
     return (
         <div className="coupon-container">
             {props.coupons.map((item) => (
-                <CouponBox
+                <SharedCouponBox
                     key={item.id}
                     coupon={item}
                     getCoupons={props.getCoupons}
@@ -21,4 +21,4 @@ const CouponsContainer = (props) => {
     );
 };
 
-export default CouponsContainer;
+export default SharedCouponsContainer;
