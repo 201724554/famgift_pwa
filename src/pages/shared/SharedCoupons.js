@@ -39,7 +39,6 @@ const SharedCouponList = () => {
   const getCoupons = () => {
     customAxios.get("group/gifticon?" + getReqParam())
       .then((response) => {
-        console.log(response.data)
         setCoupons(response.data);
       })
       .catch()

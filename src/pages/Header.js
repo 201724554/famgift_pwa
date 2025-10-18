@@ -4,18 +4,18 @@ const Header = (props) => {
             name: "내 쿠폰",
             value: "CouponList"
         },
-        {
-            name: "사용가능",
-            value: "UsableCouponList"
-        },
+        // {
+        //     name: "사용가능",
+        //     value: "UsableCouponList"
+        // },
         {
             name: "공유중",
             value: "SharedCouponList"
         },
-        {
-            name: "사용완료",
-            value: "UsedCouponList"
-        },
+        // {
+        //     name: "사용완료",
+        //     value: "UsedCouponList"
+        // },
         {
             name: "공유방 관리",
             value: "GroupList"

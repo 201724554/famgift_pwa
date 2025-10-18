@@ -21,15 +21,15 @@ export const getCookie = () => {
     const arr = cookie.split(";");
 
     arr.forEach((elem) => {
-        const temp = elem.split("=");
+        const temp = elem.replace(" ", "").split("=");
         mp.set(temp[0], temp[1]);
     });
 
     return mp;
 }
 
-export const getUserId = () => {
-    console.log(getCookie());
+export const getCookieValue = (key) => {
+    return getCookie().get(key);
 }
 
 export const customConfirm = (msg, beforeConfirm) => {

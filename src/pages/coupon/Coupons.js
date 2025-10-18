@@ -37,7 +37,7 @@ const CouponList = () => {
           setCategories(response.data);
         }
       )
-      .catch((err) => console.log(err))
+      .catch()
   }
 
   const getCoupons = () => {
@@ -45,7 +45,7 @@ const CouponList = () => {
       .then((response) => {
         setCoupons(response.data);
       })
-      .catch((err) => console.log(err))
+      .catch()
   }
 
   const getReqParam = () => {

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import imageAlt from '../../static/image-alt.png';
 import { customAxios } from "../../common/CustomAxios";
 import { useNavigate } from 'react-router-dom';
-import { customConfirm, getUserId } from "../../common/Util";
+import { customConfirm, getCookieValue } from "../../common/Util";
 
 
 /*
@@ -32,7 +32,8 @@ const SharedCouponBox = (props) => {
         barcode: '',
         price: '',
         expirationDate: '',
-        dateDiff: ''
+        dateDiff: '',
+        gifticonOwnerId: ''
     });
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [overLayStyle, setOverLayStyle] = useState();
@@ -63,7 +64,8 @@ const SharedCouponBox = (props) => {
             barcode: props.coupon.barcode,
             price: props.coupon.price,
             expirationDate: props.coupon.expirationDate,
-            dateDiff: calculateDateDiff(getCurrentDate(), props.coupon.expirationDate)
+            dateDiff: calculateDateDiff(getCurrentDate(), props.coupon.expirationDate),
+            gifticonOwnerId: props.coupon.gifticonOwnerId
         });
     }, [props.coupon]);
 
@@ -100,16 +102,15 @@ const SharedCouponBox = (props) => {
         props.setIsViewOpen(true);
     }
 
-    const stopShareCoupon = (gifticonId) => {
-        getUserId()
-        // if (customConfirm("공유를 중단할까요?")) {
-        //     customAxios.patch("/gifticon/group", { id: coupon.id })
-        //         .then(() => {
-        //             //다시 불러오기?
-        //             props.getCoupons();
-        //         })
-        //         .catch()
-        // }
+    const stopShareCoupon = () => {
+        if (customConfirm("공유를 중단할까요?")) {
+            customAxios.patch("/gifticon/group", { id: coupon.id })
+                .then(() => {
+                    //다시 불러오기?
+                    props.getCoupons();
+                })
+                .catch()
+        }
     }
 
     return (
@@ -132,8 +133,15 @@ const SharedCouponBox = (props) => {
             <div className="verticalAlign">
                 {/* <button className="delete-button" onClick={() => deleteCoupon()}>🗑️</button>
                 <button className="edit-button" onClick={() => updateCoupon()}>✏️</button> */}
-                {/* 원래 기프티콘 주인만 할 수 있도록 수정 */}
-                <button className="edit-button" onClick={() => { stopShareCoupon() }}>👨‍👩‍👧‍👦</button>
+                {/* 원래 기프티콘 주인만 할 수 있도록 */}
+                { 
+                    //타입이 달라서 === 연산자 사용 시 불일치로 나옴 
+                    coupon.gifticonOwnerId == getCookieValue("userId")
+                    ?
+                    (<button className="edit-button" onClick={() => { stopShareCoupon() }}>👨‍👩‍👧‍👦</button>)
+                    : 
+                    (<></>)
+                }
             </div>
         </div>
     );

@@ -7,6 +7,11 @@ const Modal = (props) => {
         setModalData(modalData);
     },[isModalOpen])
 
+    const close = () => {
+        setModalData("");
+        setIsModalOpen(false);
+    }
+
     return (
         <div className="main">
             {isModalOpen && (
@@ -23,7 +28,7 @@ const Modal = (props) => {
                         <button onClick={()=>onButtonClick(modalData, etcData)} className="modal-button">
                             {buttonText}
                         </button>
-                        <button onClick={()=>setIsModalOpen(false)} className="modal-button-close">
+                        <button onClick={()=>close()} className="modal-button-close">
                             닫기
                         </button>
                     </div>

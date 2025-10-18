@@ -40,10 +40,9 @@ function Login() {
 
     return (
         <div className='MainFlex'>
-             <button onClick={test}>test</button> 
-            <div>
+            {/* <div>
                 <img style={{height: '100px'}} src={TestImg}/>
-            </div>
+            </div> */}
             <div>
                 <a href={process.env.REACT_APP_KAKAO_OAUTH_URI}><img className='BtnImg' src={kakaoLogin}/></a>
             </div>

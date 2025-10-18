@@ -13,7 +13,9 @@ const GroupContainer = (props) => {
                 <GroupBox
                     key={item.groupId}
                     group={item}
-                    getCoupons={props.getCoupons}
+                    getGroups={props.getGroups}
+                    setShowGroupMembers={props.setShowGroupMembers}
+                    setGroupMembers={props.setGroupMembers}
                 />
             ))}
         </div>
