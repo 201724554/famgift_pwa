@@ -25,9 +25,17 @@ const GroupList = () => {
             .catch()
     }
 
+    const fetchGroupMembers = (groupId) => {
+         customAxios.get("/group/user/" + groupId)
+                .then((res) => {
+                    setGroupMembers(res.data);
+                })
+                .catch()
+    }
+
     const onMemberDeleteClick = (userGroupId, groupId) => {
         customAxios.delete("userGroup", {data: { userGroupId: userGroupId, groupId: groupId }})
-            .then(() => { })
+            .then(() => { fetchGroupMembers(groupId) })
             .catch()
     }
 
@@ -47,6 +55,7 @@ const GroupList = () => {
                 setIsModalOpen={setShowGroupMembers}
                 modalData={groupMembers}
                 onButtonClick={onMemberDeleteClick}
+                fetchGroupMembers={fetchGroupMembers}
             />
         </div>
     );
